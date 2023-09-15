@@ -18,9 +18,9 @@ struct ContentView: View {
                 TextField("Enter your text", text: $text)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .multilineTextAlignment(.center)
-                    .modifier(ShakeEffect(animatableData: isShaking ? 3 : 0))
+                    .modifier(ShakeEffect(animatableData: isShaking ? 3 : 0)) // 3 means three shakes
                     .font(Font.system(size: 14))
-                    .padding(.leading, 10)
+                    .padding(.horizontal, 20)
                 
                 Button("Shake") {
                     withAnimation {
@@ -41,7 +41,7 @@ struct ShakeEffect: GeometryEffect {
     var animatableData: CGFloat
 
     func effectValue(size: CGSize) -> ProjectionTransform {
-        let xOffset = sin(animatableData * .pi * 2) * 5 // Wartość 5 określa amplitudę potrząsania.
+        let xOffset = sin(animatableData * .pi * 2) * 5 // A value of 5 determines the shaking amplitude.
         return ProjectionTransform(CGAffineTransform(translationX: xOffset, y: 0))
     }
 }
